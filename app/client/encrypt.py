@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from random import randint
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any, Union # <-- Import Optional
 
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
@@ -33,8 +33,6 @@ logger = logging.getLogger(__name__)
 
 # =============================================================================
 # GLOBAL VARIABLES (Environment & Constants)
-# Tetap didefinisikan di global scope untuk backward compatibility
-# jika ada file lain yang melakukan import variables ini secara langsung.
 # =============================================================================
 API_KEY = os.getenv("API_KEY")
 AES_KEY_ASCII = os.getenv("AES_KEY_ASCII")
@@ -242,9 +240,10 @@ def ax_device_id() -> str:
     return _service.get_ax_device_id()
 
 def ax_fingerprint(dev: DeviceInfo, secret_key: str) -> str:
+    # `secret_key` diabaikan, menggunakan kunci dari config internal
     return _service.generate_ax_fingerprint(dev)
 
-def build_encrypted_field(iv_hex16: str | None = None, urlsafe_b64: bool = False) -> str:
+def build_encrypted_field(iv_hex16: Optional[str] = None, urlsafe_b64: bool = False) -> str: # PENTING: Perubahan di sini!
     return _service.build_encrypted_field(iv_hex16, urlsafe_b64)
 
 def java_like_timestamp(now: datetime) -> str:
@@ -254,21 +253,25 @@ def ts_gmt7_without_colon(dt: datetime) -> str:
     return _service.ts_gmt7_without_colon(dt)
 
 def ax_api_signature(api_key: str, ts_for_sign: str, contact: str, code: str, contact_type: str) -> str:
-    # Helper wrapper
+    # `api_key` diabaikan, fungsi sebenarnya menggunakan konstanta dari env
     return make_ax_api_signature(ts_for_sign, contact, code, contact_type)
 
 def encryptsign_xdata(api_key: str, method: str, path: str, id_token: str, payload: dict) -> dict:
+    # `api_key` diabaikan
     return _service.encrypt_and_sign_xdata(method, path, id_token, payload)
 
 def decrypt_xdata(api_key: str, encrypted_payload: dict) -> dict:
+    # `api_key` diabaikan
     return _service.decrypt_xdata_payload(encrypted_payload)
 
 # FIX CRITICAL: Kembalikan perilaku original (abaikan api_key di argumen helper)
 def encrypt_circle_msisdn(api_key: str, msisdn: str) -> str:
+    # `api_key` diabaikan, fungsi helper menggunakan ENCRYPTED_FIELD_KEY dari env
     return helper_enc_msisdn(msisdn) 
 
 # FIX CRITICAL: Kembalikan perilaku original (abaikan api_key di argumen helper)
 def decrypt_circle_msisdn(api_key: str, encrypted_msisdn_b64: str) -> str:
+    # `api_key` diabaikan, fungsi helper menggunakan ENCRYPTED_FIELD_KEY dari env
     return helper_dec_msisdn(encrypted_msisdn_b64)
 
 # --- Signature Wrappers ---
@@ -283,6 +286,7 @@ def get_x_signature_payment(
     payment_for: str,
     path: str,
 ) -> str:
+    # `api_key` diabaikan
     return make_x_signature_payment(
         access_token, sig_time_sec, package_code, token_payment, payment_method, payment_for, path
     )
@@ -294,6 +298,7 @@ def get_x_signature_bounty(
     package_code: str,
     token_payment: str
 ) -> str:
+    # `api_key` diabaikan
     return make_x_signature_bounty(
         access_token, sig_time_sec, package_code, token_payment
     )
@@ -305,6 +310,7 @@ def get_x_signature_loyalty(
     token_confirmation: str,
     path: str
 ) -> str:
+    # `api_key` diabaikan
     return make_x_signature_loyalty(
         sig_time_sec, package_code, token_confirmation, path
     )
@@ -317,6 +323,7 @@ def get_x_signature_bounty_allotment(
     destination_msisdn: str,
     path: str
 ) -> str:
+    # `api_key` diabaikan
     return make_x_signature_bounty_allotment(
         sig_time_sec, package_code, token_confirmation, path, destination_msisdn
     )

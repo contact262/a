@@ -314,6 +314,7 @@ class EngselClient:
 # =============================================================================
 # COMPATIBILITY LAYER (Backward Compatibility)
 # Wrapper functions agar script lama (legacy) tidak perlu diubah pemanggilannya.
+# * Mengganti 'type union operator' (|) menjadi 'Optional[...]'
 # =============================================================================
 
 # Singleton instance untuk legacy calls
@@ -332,7 +333,8 @@ def get_balance(api_key: str, id_token: str):
     _ensure_api_key(api_key)
     return _client.get_balance(id_token)
 
-def get_family(api_key: str, tokens: dict, family_code: str, is_enterprise: bool | None = None, migration_type: str | None = None):
+# PERBAIKAN: bool | None -> Optional[bool] dan str | None -> Optional[str]
+def get_family(api_key: str, tokens: dict, family_code: str, is_enterprise: Optional[bool] = None, migration_type: Optional[str] = None):
     _ensure_api_key(api_key)
     return _client.get_family(tokens, family_code, is_enterprise, migration_type)
 
@@ -352,7 +354,8 @@ def login_info(api_key: str, tokens: dict, is_enterprise: bool = False):
     _ensure_api_key(api_key)
     return _client.login_info(tokens, is_enterprise)
 
-def get_package_details(api_key: str, tokens: dict, family_code: str, variant_code: str, option_order: int, is_enterprise: bool | None = None, migration_type: str | None = None):
+# PERBAIKAN: bool | None -> Optional[bool] dan str | None -> Optional[str]
+def get_package_details(api_key: str, tokens: dict, family_code: str, variant_code: str, option_order: int, is_enterprise: Optional[bool] = None, migration_type: Optional[str] = None):
     _ensure_api_key(api_key)
     return _client.get_package_by_order(tokens, family_code, variant_code, option_order)
 
