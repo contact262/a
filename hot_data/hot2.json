@@ -1,6 +1,6 @@
 [
     {
-        "name": "Masa Aktif 30 Hari",
+        "name": "[30天] Masa Aktif 30 Hari",
         "price": "Rp0",
         "detail": "Membuat masa aktif menjadi 30 hari dari tanggal pembelian. Tidak bisa akumulasi.\nSupported payment: Balance/pulsa.",
         "packages": [
@@ -31,7 +31,7 @@
         "amount_idx": -1
     },
     {
-        "name": "Masa Aktif 30 Hari",
+        "name": "[30天] Masa Aktif 30 Hari (Refund)",
         "price": "Rp1000 (refund)",
         "detail": "Membuat masa aktif menjadi 30 hari dari tanggal pembelian. Tidak bisa akumulasi.\nSaldo akan di-refund setelah 10-30 menit.\nPastikan metode scan QRIS support refund.\nSupported payment: E-wallet & QRIS.",
         "packages": [
@@ -63,7 +63,7 @@
         "amount_idx": -1
     },
     {
-        "name": "Pros Champion 20GB + Unlimited",
+        "name": "[VIP] Pros Champion 20GB + Unlimited",
         "price": "Rp40000",
         "detail": "\nUnlimited WA & Spotify.\nLangkah pertama di bulan tidak diambil oleh orang yang ragu.\n#RagumuRugimu\nSupported payment: E-wallet & QRIS.",
         "packages": [
@@ -93,7 +93,7 @@
         "amount_idx": -1
     },
     {
-        "name": "Udemy 15GB",
+        "name": "[学] Udemy 15GB",
         "price": "Rp7500",
         "detail": "\nMembuat belajarmu lebih asyik.\nSupported payment: E-wallet & QRIS.",
         "packages": [
@@ -123,7 +123,7 @@
         "amount_idx": -1
     },
     {
-        "name": "Shopeefood 12GB + Unlimited",
+        "name": "[食] Shopeefood 12GB + Unlimited",
         "price": "Rp55000",
         "detail": "\nUnlimited WA & Shopee.\nTembok China tidak dibangun oleh orang yang ragu.\n#RagumuRugimu\nSupported payment: E-wallet & QRIS.",
         "packages": [
@@ -153,7 +153,7 @@
         "amount_idx": -1
     },
     {
-        "name": "Xtra Combo Flex XS",
+        "name": "[特] Xtra Combo Flex XS",
         "price": "Rp15000",
         "detail": "Konstantinopel tidak ditaklukan oleh orang yang ragu.\n#RagumuRugimu\nSupported payment: E-wallet & QRIS.",
         "packages": [

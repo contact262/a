@@ -69,7 +69,7 @@ def get_input_int(prompt: str, default: int = None) -> int:
         try:
             return int(raw)
         except ValueError:
-            print("❌ Input harus berupa angka.")
+            print("[X] Input harus berupa angka.")
 
 def get_input_bool(prompt: str) -> bool:
     """Mendapatkan input boolean (y/n)."""
@@ -91,15 +91,15 @@ def show_header(profile: dict):
             exp_date = datetime.fromtimestamp(ts).strftime("%d %b %Y")
         except: pass
 
-    # Baris 1: Identitas
-    print(f" 📱 {profile['number']} ({profile['subscription_type']})".center(WIDTH))
+    # Baris 1: Identitas (Ganti Emoji HP ke Mandarin/Simbol)
+    print(f" [手机] {profile['number']} ({profile['subscription_type']})".center(WIDTH))
     
-    # Baris 2: Keuangan
+    # Baris 2: Keuangan (Ganti Emoji Uang ke Mandarin/Simbol)
     bal_str = f"Rp {profile['balance']:,}" if isinstance(profile['balance'], (int, float)) else str(profile['balance'])
-    print(f" 💰 {bal_str} | Exp: {exp_date}".center(WIDTH))
+    print(f" [余额] {bal_str} | Exp: {exp_date}".center(WIDTH))
     
-    # Baris 3: Loyalty
-    print(f" 🌟 {profile['point_info']}".center(WIDTH))
+    # Baris 3: Loyalty (Ganti Emoji Bintang ke Mandarin/Simbol)
+    print(f" [积分] {profile['point_info']}".center(WIDTH))
     print("=" * WIDTH)
 
 def print_menu():
@@ -107,8 +107,8 @@ def print_menu():
     menu_items = [
         ("1", "Login / Ganti Akun"),
         ("2", "Lihat Paket Saya"),
-        ("3", "Beli Paket 🔥 HOT 🔥"),
-        ("4", "Beli Paket 🔥 HOT-2 🔥"),
+        ("3", "Beli Paket [热] HOT [热]"),
+        ("4", "Beli Paket [热] HOT-2 [热]"),
         ("5", "Beli Paket (Option Code)"),
         ("6", "Lihat Family (Family Code)"),
         ("7", "Beli Semua di Family (Loop)"),
@@ -119,7 +119,7 @@ def print_menu():
         ("12", "Store Family List"),
         ("13", "Store Packages (Cari Paket)"),
         ("14", "Redeemables (Voucher/Bonus)"),
-        ("15", "Custom Loop / Bomber (Menu Baru) 🔥"), # NEW FEATURE
+        ("15", "Custom Loop / Bomber [新]"), # NEW FEATURE
         ("R", "Registrasi Kartu (Dukcapil)"),
         ("N", "Notifikasi"),
         ("V", "Validasi MSISDN"),
@@ -216,7 +216,7 @@ def handle_menu_selection(choice: str, active_user: dict):
             show_bookmark_menu()
             
         elif choice == "99":
-            print("👋 Sampai Jumpa!")
+            print("[再见] Sampai Jumpa!")
             sys.exit(0)
             
         elif choice.lower() == "r":
@@ -245,12 +245,12 @@ def handle_menu_selection(choice: str, active_user: dict):
             pause()
             
         else:
-            print("⚠️ Pilihan tidak valid.")
+            print("[!] Pilihan tidak valid.")
             pause()
             
     except Exception as e:
         logger.error(f"Error in menu handler: {e}")
-        print(f"\n❌ Terjadi kesalahan pada menu: {e}")
+        print(f"\n[X] Terjadi kesalahan pada menu: {e}")
         traceback.print_exc()
         pause()
 
@@ -317,7 +317,7 @@ def main():
             handle_menu_selection(choice, active_user)
 
         except KeyboardInterrupt:
-            print("\n\n🛑 Aplikasi dihentikan pengguna.")
+            print("\n\n[STOP] Aplikasi dihentikan pengguna.")
             sys.exit(0)
         except Exception as e:
             logger.critical(f"Critical Loop Error: {e}")
@@ -326,7 +326,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        print("🔍 Memeriksa pembaruan script...")
+        print("[INFO] Memeriksa pembaruan script...")
         if check_for_updates():
             print("Update ditemukan. Silahkan restart jika diperlukan.")
             pause()
